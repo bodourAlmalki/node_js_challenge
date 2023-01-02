@@ -74,7 +74,7 @@ function hello(){
 
 
 /**
- * help Function => it lists all the command 
+ * help Function => it lists all the possible commands. 
  *
  * @returns {void}
  */
