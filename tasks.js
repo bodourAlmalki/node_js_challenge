@@ -34,6 +34,7 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
+
   text = text.replace("\n", " ").trim().split(" ");
  // const first = text[0];
  if (text[0] === 'quit'|| text[0] === 'exit') {
@@ -44,6 +45,9 @@ else if(text[0] === 'hello'){
 }
 else if(text[0] === 'help'){
   help();
+}
+else if(text[0] === 'list'){
+  list()
 }
 
 else{
@@ -70,7 +74,14 @@ function hello(x){
      console.log('hello ' + x[1] + '!')}
 }
 
+function list(){
 
+const lst=['woke up ','open laptop' ,'open VS code','work on your assignment '];
+lst.forEach((task, index) => {
+  console.log(`${index + 1}: ${task}`);
+});
+
+}
 
 
 
@@ -81,7 +92,7 @@ function hello(x){
    */
 
   function help(){
-    console.log('\n-hello : hello!'+'\n-hello x : hello x! =>this command put "!"after the string containing two word'+'\n-quit or exit => it exit from the program'+'\n-help => help command ,this command  lists the possible command in program\n')
+    console.log('\n-hello : hello!'+'\n-hello x : hello x! =>this command put "!"after the string containing two word'+'\n-quit or exit => it exit from the program'+'\n-help => help command ,this command lists the possible command in program\n')
    
   }
 
