@@ -34,18 +34,21 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text === 'quit\n' || text === 'exit\n' ) {
-    quit();
-  }
-  else if(text === 'hello\n'){
-    hello();
-  }
-  else if(text === 'help\n'){
-    help();
-  }
-  else{
-    unknownCommand(text);
-  }
+  text = text.replace("\n", " ").trim().split(" ");
+ // const first = text[0];
+ if (text[0] === 'quit'|| text[0] === 'exit') {
+  quit();
+}
+else if(text[0] === 'hello'){
+  hello(text);
+}
+else if(text[0] === 'help'){
+  help();
+}
+
+else{
+  unknownCommand(text[0]);
+ }
 }
 
 
@@ -57,32 +60,30 @@ function onDataReceived(text) {
  * @returns {void}
  */
 function unknownCommand(c){
-  console.log('unknown command: "'+c.trim()+'"')
+  console.log('unknown command: "'+ c.trim() +'"')
+}
+
+function hello(x){
+  if(x[1]===undefined){
+   console.log("hello!");}
+  else {
+     console.log('hello ' + x[1] + '!')}
 }
 
 
-/**
- * Says hello
- *
- * @returns {void}
- */
-function hello(){
-  console.log('hello!')
-}
 
 
 
+  /**
+   * help Function => it lists all the possible commands 
+   *
+   * @returns {void}
+   */
 
-/**
- * help Function => it lists all the possible commands. 
- *
- * @returns {void}
- */
-function help(){
-  console.log('hello\n'+'quit\n'+'exit\n' + 'help\n')
- 
-}
-
+  function help(){
+    console.log('hello\n'+'quit\n'+'exit\n' + 'help\n')
+   
+  }
 
 
 /**
