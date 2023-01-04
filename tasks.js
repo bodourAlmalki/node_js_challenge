@@ -81,7 +81,7 @@ function hello(x){
    */
 
   function help(){
-    console.log('hello\n'+'quit\n'+'exit\n' + 'help\n')
+    console.log('\n-hello : hello!'+'\n-hello x : hello x! =>this command put "!"after the string containing two word'+'\n-quit or exit => it exit from the program'+'\n-help => help command ,this command  lists the possible command in program\n')
    
   }
 
