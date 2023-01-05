@@ -49,7 +49,18 @@ else if(text[0] === 'help'){
 else if(text[0] === 'list'){
   list()
 }
+else if(text[0] === 'add'){
+  
+      text.shift();
+      text.join(" ");
+      add(text);
+}
+else if(text[0] === 'remove'){
+  
+  remove(text);
 
+
+}
 else{
   unknownCommand(text[0]);
  }
@@ -74,14 +85,67 @@ function hello(x){
      console.log('hello ' + x[1] + '!')}
 }
 
+
+
+
+
+// var lst=[];
+var tasks=['woke up ','open laptop' ,'open VS code','work on your assignment '];
+
+
 function list(){
 
-const lst=['woke up ','open laptop' ,'open VS code','work on your assignment '];
-lst.forEach((task, index) => {
+tasks.forEach((task, index) => {
   console.log(`${index + 1}: ${task}`);
 });
 
 }
+
+function add(task){
+if (task) {
+  tasks.push(task);
+  console.log(`Added ${task} to the list`);
+} else {
+  console.error('Error! there is No task added ');
+  
+}
+}
+// function remove(index) {
+//   if (index === undefined) {
+//      return tasks.pop();
+//     //  console.log(tasks);
+//   } else if (index === tasks[1]) {
+//             console.log()
+//     //  console.log(tasks);
+//   }else{
+
+
+//   }
+// }
+
+function remove(x) {
+  if (x == 'remove' ) {
+     let var1=tasks.pop();
+     console.log(var1);
+    }
+  else if(x[1] === "1"){
+    let var2=tasks.slice(0,1);
+     console.log(var2);
+    }
+  else if(x[1] === '2'){
+    let var3=tasks.slice(1,2);
+     console.log(var3);
+    }
+    else if(x[1] === '3'){
+      let var3=tasks.slice(2,3);
+       console.log(var3);
+      }
+  else{
+
+      console.log(tasks);
+    } 
+  }
+
 
 
 
