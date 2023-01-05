@@ -149,6 +149,7 @@ function remove(x) {
 
 
 
+
   /**
    * help Function => it lists all the possible commands 
    *
@@ -156,7 +157,7 @@ function remove(x) {
    */
 
   function help(){
-    console.log('\n-hello : hello!'+'\n-hello x : hello x! =>this command put "!"after the string containing two word'+'\n-quit or exit => it exit from the program'+'\n-help => help command ,this command lists the possible command in program\n')
+    console.log('\n-hello : hello!'+'\n-hello x : hello x! =>this command put "!"after the string containing two word'+'\n-quit or exit => it exit from the program'+'\n-help => help command ,this command lists the possible command in program'+'\n-remove => remove the last element from the list '+ '\n-remove 1 => it remove the first item in the list'+'\n-remove 2 => it remove the second item in the list'+ '\n-remove 3 => it remove the third item in the list')
    
   }
 
