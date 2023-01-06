@@ -58,9 +58,17 @@ else if(text[0] === 'add'){
 else if(text[0] === 'remove'){
   
   remove(text);
-
-
 }
+else if(text[0] === 'edit' || text[0] === 'Edit'){
+  let i = text[1]
+  text.shift()
+  let newText = text.join(" ");
+   edit(text,i, newText);
+  
+}
+
+
+
 else{
   unknownCommand(text[0]);
  }
@@ -110,6 +118,8 @@ if (task) {
   
 }
 }
+
+
 // function remove(index) {
 //   if (index === undefined) {
 //      return tasks.pop();
@@ -125,20 +135,20 @@ if (task) {
 
 function remove(x) {
   if (x == 'remove' ) {
-     let var1=tasks.pop();
-     console.log(var1);
+     let num=tasks.pop();
+     console.log(num);
     }
   else if(x[1] === "1"){
-    let var2=tasks.slice(0,1);
-     console.log(var2);
+    let num1=tasks.slice(0,1);
+     console.log(num1);
     }
   else if(x[1] === '2'){
-    let var3=tasks.slice(1,2);
-     console.log(var3);
+    let num2=tasks.slice(1,2);
+     console.log(num2);
     }
     else if(x[1] === '3'){
-      let var3=tasks.slice(2,3);
-       console.log(var3);
+      let num3=tasks.slice(2,3);
+       console.log(num3);
       }
   else{
 
@@ -148,6 +158,35 @@ function remove(x) {
 
 
 
+  function edit(tasks, index, newText) {
+    if (index === undefined) {
+      console.log("Error: No task index specified");
+    } else if (index === -1) {
+      tasks[tasks.length - 1] = newText;
+    } else if (index < 0 || index >= tasks.length) {
+      console.log("Error: Task index out of range");
+    } else {
+      tasks[index] = newText;
+    }
+  }
+
+  // function edit(index, newText) {
+  //   if (index === undefined) {
+  //     console.log("Error: No task index specified");
+  //   } else if (index >= tasks.length) {
+  //     console.log("Error: Task index out of range");
+  //   } else {
+  //     tasks[index] = newText;
+  //   }
+  // }
+
+
+  // function edit1(x,index ,newTask){
+  //   if (x === 'edit') {
+  //     console.log("Error: No task index specified");
+  //    }else if(x === )
+
+  // }
 
 
   /**
@@ -157,7 +196,7 @@ function remove(x) {
    */
 
   function help(){
-    console.log('\n-hello : hello!'+'\n-hello x : hello x! =>this command put "!"after the string containing two word'+'\n-quit or exit => it exit from the program'+'\n-help => help command ,this command lists the possible command in program'+'\n-remove => remove the last element from the list '+ '\n-remove 1 => it remove the first item in the list'+'\n-remove 2 => it remove the second item in the list'+ '\n-remove 3 => it remove the third item in the list')
+    console.log('\n-hello : hello!'+'\n-hello x : hello x! =>this command put "!"after the string containing two word'+'\n-quit or exit => it exit from the program'+'\n-help => help command ,this command lists the possible command in program'+'\n-list => it list all the task'+'\n-add => it add task to the list'+'\n-remove => remove the last element from the list '+ '\n-remove 1 => it remove the first item in the list'+'\n-remove 2 => it remove the second item in the list'+ '\n-remove 3 => it remove the third item in the list')
    
   }
 
