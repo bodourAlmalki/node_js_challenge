@@ -67,6 +67,14 @@ else if(text[0] === 'edit' || text[0] === 'Edit'){
   
 }
 
+else if(text[0] === 'check'){
+  
+  check(text);
+}
+else if(text[0] === 'uncheck'){
+  
+  unCheck(text);
+}
 
 
 else{
@@ -161,7 +169,8 @@ function remove(x) {
   function edit(tasks, index, newText) {
     if (index === undefined) {
       console.log("Error: No task index specified");
-    } else if (index === -1) {
+    } else if (index === tasks[1]) {
+      let editvar = tasks.slice(3,4)
       tasks[tasks.length - 1] = newText;
     } else if (index < 0 || index >= tasks.length) {
       console.log("Error: Task index out of range");
@@ -170,24 +179,34 @@ function remove(x) {
     }
   }
 
-  // function edit(index, newText) {
-  //   if (index === undefined) {
-  //     console.log("Error: No task index specified");
-  //   } else if (index >= tasks.length) {
-  //     console.log("Error: Task index out of range");
-  //   } else {
-  //     tasks[index] = newText;
-  //   }
-  // }
 
 
-  // function edit1(x,index ,newTask){
-  //   if (x === 'edit') {
-  //     console.log("Error: No task index specified");
-  //    }else if(x === )
+const tasksCheck = [];
+for (let i = 0; i < tasks.length; i++) {
+  // tasks.forEach((i) => {
+  tasksCheck[i] = "[]";
+}
 
-  // }
+  function check(index) {
+    if (index == "\n") {
+      console.log("Error");
+      return;
+    }
+  
+    const var1 = tasksCheck[Number(index)];
+    if (!var1.includes('[✓]')) {
+      tasksCheck[Number(index)] = var1.replace('[]', '[✓]');
+    }
+  }
 
+  
+  function unCheck(index) {
+    const var1 = tasksCheck[Number(index)];
+    if (var1.includes('[✓]')) {
+      tasksCheck[Number(index)] = var1.replace('[✓]', '[ ]');
+    }
+  }
+  
 
   /**
    * help Function => it lists all the possible commands 
