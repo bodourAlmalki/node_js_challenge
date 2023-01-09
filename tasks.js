@@ -60,18 +60,21 @@ else if(text[0] === 'remove'){
   remove(text);
 }
 else if(text[0] === 'edit' || text[0] === 'Edit'){
-  let i = text[1]
+  let i= text[1]
+  text.shift()
   text.shift()
   let newText = text.join(" ");
-   edit(text,i, newText);
+   edit(i, newText);
   
 }
 
 else if(text[0] === 'check'){
-  
+  text.shift();
+  text.join(" ");
   check(text);
 }
 else if(text[0] === 'uncheck'){
+  text.shift();
   
   unCheck(text);
 }
@@ -106,23 +109,32 @@ function hello(x){
 
 
 // var lst=[];
-var tasks=['woke up ','open laptop' ,'open VS code','work on your assignment '];
+var tasks =[{ task : "woke up " ,done : false},
+{ task : "open laptop " ,done : false},{ task : "open VS code " ,done : false},{ task : "work on your assignment" ,done : false}]
+
 
 
 function list(){
 
-tasks.forEach((task, index) => {
-  console.log(`${index + 1}: ${task}`);
-});
+for(let i= 0; i<tasks.length ; i++) {
+  const taski =tasks[i]
+  let tasksCheck = "[ ]";
+  if (taski.done){
+    tasksCheck = "[✓]";
+  }
+  console.log(`${i + 1}:${tasksCheck}  ${taski.task} `);
+
+};
 
 }
 
-function add(task){
-if (task) {
-  tasks.push(task);
-  console.log(`Added ${task} to the list`);
-} else {
+function add(task ,done){
+if (!task && !done) {
   console.error('Error! there is No task added ');
+  
+} else {
+  tasks.push({task ,done});
+  console.log(`Added ${task} to the list`);
   
 }
 }
@@ -166,45 +178,51 @@ function remove(x) {
 
 
 
-  function edit(tasks, index, newText) {
-    if (index === undefined) {
-      console.log("Error: No task index specified");
-    } else if (index === tasks[1]) {
-      let editvar = tasks.slice(3,4)
-      tasks[tasks.length - 1] = newText;
-    } else if (index < 0 || index >= tasks.length) {
-      console.log("Error: Task index out of range");
-    } else {
-      tasks[index] = newText;
-    }
-  }
+  // function edit( index, newText) {
+  //   if (index === undefined) {
+  //     console.log("Error: No task index specified");
+  //   } else if (index === tasks[1]) {
+  //     let editvar = tasks.slice(3,4)
+  //     tasks[tasks.length - 1] = newText;
+  //   } else if (index < 0 || index >= tasks.length) {
+  //     console.log("Error: Task index out of range");
+  //   } else {
+  //     tasks[index] = newText;
+  //   }
+  // }
 
-
-
-const tasksCheck = [];
-for (let i = 0; i < tasks.length; i++) {
-  // tasks.forEach((i) => {
-  tasksCheck[i] = "[]";
+function edit(i, newText){
+if(!i && !newText){
+console.log('Error: add the new text')
 }
+else if (i >= 0 && i < tasks.length) {
+  tasks[i-1].task = newText
+
+}
+}
+// const tasksCheck = [];
+// for (let i = 0; i < tasks.length; i++) {
+//   // tasks.forEach((i) => {
+//   tasksCheck[i] = "[]";
+// }
 
   function check(index) {
-    if (index == "\n") {
-      console.log("Error");
-      return;
-    }
-  
-    const var1 = tasksCheck[Number(index)];
-    if (!var1.includes('[✓]')) {
-      tasksCheck[Number(index)] = var1.replace('[]', '[✓]');
-    }
+
+    if (!index) {
+      console.log("Error: no task index provided");
+    }else{
+        tasks[index-1].done = true;
+        
+    }  
   }
 
   
   function unCheck(index) {
-    const var1 = tasksCheck[Number(index)];
-    if (var1.includes('[✓]')) {
-      tasksCheck[Number(index)] = var1.replace('[✓]', '[ ]');
-    }
+    if (!index ) {
+      console.log("Error: no task index provided");
+    }else{
+        tasks[index-1].done = false;
+    }  
   }
   
 
@@ -215,7 +233,7 @@ for (let i = 0; i < tasks.length; i++) {
    */
 
   function help(){
-    console.log('\n-hello : hello!'+'\n-hello x : hello x! =>this command put "!"after the string containing two word'+'\n-quit or exit => it exit from the program'+'\n-help => help command ,this command lists the possible command in program'+'\n-list => it list all the task'+'\n-add => it add task to the list'+'\n-remove => remove the last element from the list '+ '\n-remove 1 => it remove the first item in the list'+'\n-remove 2 => it remove the second item in the list'+ '\n-remove 3 => it remove the third item in the list')
+    console.log('\n-hello : hello!'+'\n-hello x : hello x! =>this command put "!"after the string containing two word'+'\n-quit or exit => it exit from the program'+'\n-help => help command ,this command lists the possible command in program'+'\n-list => it list all the task'+'\n-add => it add task to the list'+'\n-remove => remove the last element from the list '+ '\n-remove 1 => it remove the first item in the list'+'\n-remove 2 => it remove the second item in the list'+ '\n-remove 3 => it remove the third item in the list'+ '\n-edit x newText => this command edit the task at specific index'+'\n check 1  => it will check the task at id :1'+'\n-uncheck 1 =>this command uncheck the task at id :1 ')
    
   }
 
