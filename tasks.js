@@ -1,4 +1,22 @@
+var fs = require('fs');
 
+const fileName = process.argv[2] || 'tasks.json';
+
+var fileContents
+
+if (fs.existsSync(fileName)) {
+  fileContents = fs.readFileSync(fileName, 'utf8');
+} else {
+  fs.writeFileSync(fileName, "[]")
+  fileContents = fs.readFileSync(fileName, 'utf8');
+}
+
+const tasks = JSON.parse(fileContents);
+
+
+const { title } = require('process');
+const { finished } = require('stream');
+const { isUndefined } = require('util');
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -50,13 +68,13 @@ else if(text[0] === 'list'){
   list()
 }
 else if(text[0] === 'add'){
-  
+
       text.shift();
-      text.join(" ");
-      add(text);
+      let x=text.join(" ");
+      add(x, false);
 }
 else if(text[0] === 'remove'){
-  
+ 
   remove(text);
 }
 else if(text[0] === 'edit' || text[0] === 'Edit'){
@@ -108,11 +126,10 @@ function hello(x){
 
 
 
-// var lst=[];
-var tasks =[{ task : "woke up " ,done : false},
-{ task : "open laptop " ,done : false},{ task : "open VS code " ,done : false},{ task : "work on your assignment" ,done : false}]
 
-
+// // var tasks =
+// var tasks =[{ task : "woke up " ,done : false},
+// { task : "open laptop " ,done : false},{ task : "open VS code " ,done : false},{ task : "work on your assignment" ,done : false}]
 
 function list(){
 
@@ -128,30 +145,21 @@ for(let i= 0; i<tasks.length ; i++) {
 
 }
 
+
+//add function
 function add(task ,done){
 if (!task && !done) {
-  console.error('Error! there is No task added ');
+  console.log('Error! there is No task added ');
   
 } else {
   tasks.push({task ,done});
   console.log(`Added ${task} to the list`);
-  
+  var data = JSON.stringify(tasks, null, 2);
+    fs.writeFileSync(fileName, data, finished);
 }
 }
 
-
-// function remove(index) {
-//   if (index === undefined) {
-//      return tasks.pop();
-//     //  console.log(tasks);
-//   } else if (index === tasks[1]) {
-//             console.log()
-//     //  console.log(tasks);
-//   }else{
-
-
-//   }
-// }
+//remove function 
 
 function remove(x) {
   if (x == 'remove' ) {
@@ -170,6 +178,14 @@ function remove(x) {
       let num3=tasks.slice(2,3);
        console.log(num3);
       }
+      else if(x[1] === '4'){
+        let num4=tasks.slice(3,4);
+         console.log(num4);
+        }
+        else if(x[1] === '5'){
+          let num5=tasks.slice(4,5);
+           console.log(num5);
+          }
   else{
 
       console.log(tasks);
@@ -178,19 +194,7 @@ function remove(x) {
 
 
 
-  // function edit( index, newText) {
-  //   if (index === undefined) {
-  //     console.log("Error: No task index specified");
-  //   } else if (index === tasks[1]) {
-  //     let editvar = tasks.slice(3,4)
-  //     tasks[tasks.length - 1] = newText;
-  //   } else if (index < 0 || index >= tasks.length) {
-  //     console.log("Error: Task index out of range");
-  //   } else {
-  //     tasks[index] = newText;
-  //   }
-  // }
-
+//edit function
 function edit(i, newText){
 if(!i && !newText){
 console.log('Error: add the new text')
@@ -200,21 +204,20 @@ else if (i >= 0 && i < tasks.length) {
 
 }
 }
-// const tasksCheck = [];
-// for (let i = 0; i < tasks.length; i++) {
-//   // tasks.forEach((i) => {
-//   tasksCheck[i] = "[]";
-// }
 
+
+//check function 
   function check(index) {
 
     if (!index) {
       console.log("Error: no task index provided");
     }else{
         tasks[index-1].done = true;
-        
+        var data = JSON.stringify(tasks, null, 2);
+         fs.writeFileSync(fileName, data, finished);
     }  
   }
+
 
   
   function unCheck(index) {
@@ -222,6 +225,8 @@ else if (i >= 0 && i < tasks.length) {
       console.log("Error: no task index provided");
     }else{
         tasks[index-1].done = false;
+        var data = JSON.stringify(tasks, null, 2);
+        fs.writeFileSync(fileName, data, finished);
     }  
   }
   

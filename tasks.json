@@ -1,0 +1,22 @@
+[
+  {
+    "task": "woke up ",
+    "done": false
+  },
+  {
+    "task": "open laptop ",
+    "done": true
+  },
+  {
+    "task": "open VS code",
+    "done": false
+  },
+  {
+    "task": "work on your assignment",
+    "done": false
+  },
+  {
+    "task": "scb true",
+    "done": false
+  }
+]
